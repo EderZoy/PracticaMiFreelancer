@@ -1,0 +1,329 @@
+:root {
+    /**definimos una paleta de colores**/ 
+    --blanco: #ffffff;
+    --negro: #212121;
+    --principal:  #84E5C8;
+    --secundario: #0097A7; 
+    --gris: #757575; 
+    --grisclaro: #DFE9F3; 
+
+    /**Tambien podemos definir cualquier variable
+    por ejemplo las fuentes a utilizar, tamaños, etc**/
+    --fuente-principal: 3.8rem; 
+}
+
+/*GLOBALES*/
+html {
+    font-size: 62.5%;/** Para utilizar rem en tamaños agregamos las siguientes lineas **/
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;  
+}
+/*para el scroll*/
+.servicios, .navegacion-principal, .formulario {
+    scroll-snap-align: center;
+    scroll-snap-stop: always; 
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    /**Lo que se aplique aqui cambia de forma general todo el documento**/
+    font-size: 16px;
+    /**Como toda la pagina web utiliza la misma fuente lo especificamos aqui**/
+    font-family: 'Krub', sans-serif;
+    font-weight: 400;
+    /*Fondo en degrade
+    El to top es de abajo hacia arriba*/
+    background-image: linear-gradient(to top, var(--secundario) 0%, var(--blanco) 100%);
+
+}
+/*Creamos una clase contenedor para centrar*/
+.contenedor {
+    max-width: 120rem; /*1200 pixeles*/
+    /*Definimos el margen en sus 4 direcciones*/
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+
+    /*Tambien se puede definir de esta manera
+    top right botton left*/
+    margin: 0 auto 0 auto;
+
+} 
+
+.boton {
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem; 
+    margin-top: 1rem;
+    font-size: 2rem;
+    text-decoration: none; /*quitar linea*/
+    text-transform: uppercase; 
+    font-weight: 700; /*letra en negrita*/
+    border-radius: .5rem; /*Para redondear puntas*/
+    width: 90%; 
+    text-align: center;
+    border: none;
+}
+@media (min-width: 780px) {
+    .boton{
+        width: auto; /*En pantallas grandes no ocupara todo el ancho*/
+    }
+}
+.boton:hover{
+    cursor: pointer;
+    background-color: var(--principal);
+    color: var(--negro);
+}
+
+.sombra {
+    /*la obtenemos desde Box Shadown*/
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(201,193,201,1);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(201,193,201,1);
+    box-shadow: 0px 5px 15px 0px rgba(201,193,201,1);
+
+    /*Esto lo agregamos a nuestro gusto*/
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+
+}
+
+
+/*Tipografia*/
+h1 {
+    font-size: 3.8rem; 
+    color: var(--blanco); /**Asi llamamos al color desde una variable**/
+    text-transform: uppercase;  /*Mayuscula*/
+
+}
+h2 {
+    font-size: 2.8rem;
+}
+h3 {
+    font-size: 1.8rem; 
+}
+h1,h2,h3 {
+    text-align: center;
+}
+
+/*TITULOS*/
+
+/**Esto nos da un equivalente de 1rem=10px**/
+.titulo {
+    text-align: center;
+    font-size: var(--fuente-principal);
+}
+
+/**PRUEBA DE ESPECIFICIDAD 
+En este caso toma al span con .titulo porque tiene mayor peso**/
+.titulo span {
+    font-size: 2rem;
+    color: rgb(109, 109, 109);
+    
+}
+span {
+    font-size: 2rem;
+    color: rgb(209, 15, 15) /**!important - Hace que sobrepase todos**/
+}
+
+/*Navegación Principal*/
+.nav-bg {
+    background-color: var(--secundario);
+}
+
+.navegacion-principal {
+    display: flex;
+    flex-direction: column;
+}    
+@media (min-width: 780px) {
+    .navegacion-principal {
+        /*Modificamos la dirección de los enlaces segun la pantalla*/
+        flex-direction: row; /*Superado los 480 los pone en fila*/
+        justify-content: space-between;
+
+    }
+}
+
+.navegacion-principal a {
+    display: block;
+    text-align: center;
+    color: var(--blanco); /*color de letra blanco*/
+    text-decoration: none; /*Quitamos la linea por defecto*/
+    font-size: 2rem;
+    font-weight: 700;  /*Para que este en negrita*/
+    padding: 1rem; /*Va aqui y no en el enlace*/
+}
+
+.navegacion-principal a:hover {
+    /*ES EL EVENTO CUANDO SE POSICIONA ARRIBA DEL ENLACE*/
+    color: var(--negro); /*color de letra negro*/
+    background-color: var(--principal);
+}
+
+/*Parte de la imagen*/
+.fondoimagen {
+    background-image: url(Img/diseño.jpg);
+    background-repeat: no-repeat; /*No repite la imagen del fondo*/
+    background-size: cover;  /*Toma el ancho disponible del fondo*/
+    background-position: center;
+    height: 40rem;
+    position: relative; /*El padre siempre debe tener posicion relativa
+    para que el hijo se pueda posicionar de forma absoluta*/
+    margin-bottom: 2rem;
+}
+
+.contenido-fondo {
+    position:absolute;
+    /*Para hacer la transparencia tenemos dos modos*/
+    background-color: rgba(0,0,0, 0.8); /*Modo Anterior*/
+    background-color: rgb(0 0 0 /70%); /*Modo Nuevo*/
+    width: 100%;
+    height: 100%; 
+
+    /*Para alinear vertical y horizontalmente*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.contenido-fondo p {
+    color: var(--blanco);
+    font-size: 2rem;
+    font-weight: 700; 
+}
+
+/*Parte de servicios*/
+@media (min-width: 768px) {
+   .servicios {
+        display: grid; /*Agregamos las propiedades de CSS Grid*/
+        /*Definimos las 3 columnas que tiene nuestro proyecto*/
+        grid-template-columns: 1fr 1fr 1fr; /*fr es que divide en fracción, en este caso 3 fracciones*/
+        /*Para definir filas es con grid-template-rows:;*/
+
+        /*Para separar las columnas*/
+        column-gap: 1rem;
+    } 
+}
+
+.servicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3 {
+   color: var(--secundario);
+   
+}
+
+.servicio p {
+    /*cambiamos el interlineado de los parrafos*/
+    line-height: 2;
+    text-align: center; /*centramos el texto*/
+}
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--negro);
+    /*Para hacer un circulo ponemos un radio del 50%*/
+    border-radius: 50%;
+
+    /*Para centrar lo hacemos con flex*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Parte de contactos - Formulario*/
+.formulario {
+    background-color: var(--gris);
+    width: min(60rem, 100%); /*utiliza el valor más pequeño*/
+    margin: 0 auto; /*Para centrarlo horizontalmente*/
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+
+.formulario legend {
+    color: var(--principal);
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .contenedor-campos {
+    /*Utilizaremos display grid para colocar de forma diferente los input*/
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);/*Hacemos dos columnas*/
+    grid-template-rows: auto auto 30rem;
+    column-gap: 1rem; /*Separacion de columnas*/
+    }  
+    /*Para indicar como se ubican debemos hacerlo por las coordenadas 
+    que provee el inspeccionar y seleccionar el campo*/
+    .campo:nth-child(3){ /*Selecciona el campo 3*/
+        /*Para posicionar un elemento utilizamos grid-column*/
+        grid-column: 1 / 3; /*Va de la uno a la 3*/
+    }
+
+    .campo:nth-child(4){ /*Selecciona el campo 3*/
+        /*Para posicionar un elemento utilizamos grid-column*/
+        grid-column: 1 / 3; /*Va de la uno a la 3*/
+    }
+}
+
+
+.campo {
+    margin-bottom: 1rem; /*cada campo tendra un margen hacia abajo*/
+}
+
+.campo label {
+    /*le damos estilo al label*/
+    color: var(--blanco);
+    font-weight: bold;
+    display: block; /*Toma todo el espacio disponible y el input queda debajo*/
+}
+
+.campo textarea {
+    padding: 1rem;
+    height: 90%; /*De altura ocupara casi todo el espacio disponible*/
+}
+
+/*Podemos tener selectores para seleccionar el imput segun su tipo
+.campo input [type="text"], .campo input [type="tel"] {
+
+}
+
+Tambien podemos ponerle una clase y manejarlos a todos desde ahi */
+
+.input-text {
+    width: 100%; /*Toma todo el espacio*/
+    border: none; /*le sacamos el borde feo*/
+    padding: 1.5rem; /*para que se vean más grandes*/
+    border-radius: 0.5rem;
+}
+
+.enviar {
+    /*para posicionar al boton a la derecha*/
+    text-align: right;
+
+}
+
+/*footer*/
+.footer {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    color: blanchedalmond;
+}
